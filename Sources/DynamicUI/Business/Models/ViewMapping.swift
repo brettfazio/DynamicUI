@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum DynamicUIMapping: String {
+enum ViewMapping: String {
     case Text
     case VStack
 }
