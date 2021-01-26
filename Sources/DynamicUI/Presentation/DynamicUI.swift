@@ -21,7 +21,6 @@ public struct DynamicUI {
 
             return AnyView(ret)
         }
-        
 
     }
     
