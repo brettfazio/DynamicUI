@@ -7,7 +7,7 @@ public struct DynamicUI {
         if reference.isEmpty {
             
             var ret: some View  {
-                Text("Dyn")
+                EmptyView()
             }
             
             return AnyView(ret)
