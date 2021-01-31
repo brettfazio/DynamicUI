@@ -1,11 +1,16 @@
 import SwiftUI
 
-public struct DynamicUI {
+public struct DynamicUI: View {
     
-    public static func get(reference: UIModel) -> some View {
-        
+    @Binding var reference: UIModel
+    @Binding var model: DynamicVMProtocol
+    
+    public var body: some View {
+        make(reference: reference)
+    }
+    
+    public func make(reference: UIModel) -> some View {
         return recursiveParse(reference: reference)
-
     }
     
 }
@@ -13,7 +18,7 @@ public struct DynamicUI {
 // Private helper methods
 extension DynamicUI {
     
-    private static func recursiveParse(reference: UIModel) -> AnyView {
+    private func recursiveParse(reference: UIModel) -> AnyView {
         
         guard let map = ViewMapping(rawValue: reference.name) else {
             return AnyView(EmptyView())
@@ -28,14 +33,30 @@ extension DynamicUI {
         case .VStack:
             var ret: some View {
                 VStack {
-                    ForEach(0..<reference.inner.count) { index in
-                        recursiveParse(reference: reference.inner[index])
-                    }
+                    parseInner(reference: reference)
                 }
             }
             return AnyView(ret)
+        case .Button:
+            var ret: some View {
+                Button(action: {
+                    model.didPress(id: reference.primary)
+                }, label: {
+                    parseInner(reference: reference)
+                })
+            }
+            return ret
         }
         
+    }
+    
+    private func parseInner(reference: UIModel) -> AnyView {
+        var ret: some View {
+            ForEach(0..<reference.inner.count) { index in
+                recursiveParse(reference: reference.inner[index])
+            }
+        }
+        return ret
     }
     
 }

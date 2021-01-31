@@ -11,4 +11,5 @@ import SwiftUI
 enum ViewMapping: String {
     case Text
     case VStack
+    case Button
 }
