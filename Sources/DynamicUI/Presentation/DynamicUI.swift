@@ -45,7 +45,7 @@ extension DynamicUI {
                     parseInner(reference: reference)
                 })
             }
-            return ret
+            return AnyView(ret)
         }
         
     }
@@ -56,7 +56,7 @@ extension DynamicUI {
                 recursiveParse(reference: reference.inner[index])
             }
         }
-        return ret
+        return AnyView(ret)
     }
     
 }
