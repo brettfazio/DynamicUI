@@ -5,6 +5,11 @@ public struct DynamicUI: View {
     @Binding var reference: UIModel
     @Binding var model: DynamicVMProtocol
     
+    public init(reference: Binding<UIModel>, model: Binding<DynamicVMProtocol>) {
+        self._reference = reference
+        self._model = model
+    }
+    
     public var body: some View {
         make(reference: reference)
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DynamicVMProtocol {
+public protocol DynamicVMProtocol {
     
     func didPress(id: String)
     
