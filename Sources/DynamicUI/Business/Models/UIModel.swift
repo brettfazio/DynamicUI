@@ -12,4 +12,10 @@ public struct UIModel: Codable {
     public var primary: String
     
     public var inner: [UIModel]
+    
+    public init(name: String, primary: String, inner: [UIModel]) {
+        self.name = name
+        self.primary = primary
+        self.inner = inner
+    }
 }
